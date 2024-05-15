@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Home work</string>
+    <string name="app_name">App</string>
+    <string name="mu">μ</string>
+    <string name="sigma">σ²</string>
+    <string name="btn_text">Рассчитать</string>
+    <string name="nul">0</string>
 </resources>
