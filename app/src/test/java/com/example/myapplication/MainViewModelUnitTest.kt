@@ -1,4 +1,5 @@
-package com.example.myapplication
+package com.example.myapplication //Определяет пакет для класса `MainViewModelUnitTest`.
+// Необходимые импорты библиотеки `junit` для тестирования и библиотеки `apache.commons.math3` для статистических вычислений.
 
 import junit.framework.TestCase
 import org.apache.commons.math3.stat.StatUtils
@@ -10,20 +11,31 @@ import java.util.*
 import kotlin.math.abs
 import kotlin.math.exp
 import kotlin.math.sqrt
-
+// Класс `MainViewModelUnitTest` является классом JUnit для тестирования класса `MainViewModel`.
 class MainViewModelUnitTest {
 
-    private val random = Random()
-    private lateinit var viewModel: MainViewModel
-    private var generatedNums = ArrayList<Double>(0)
+    private val random = Random() //Поле для создания случайных чисел.
+    private lateinit var viewModel: MainViewModel //Поле для экземпляра тестируемого класса `MainViewModel`.
+    private var generatedNums = ArrayList<Double>(0) //Поле для хранения сгенерированных значений.
 
     @Before
-    fun setUp() {
+    fun setUp() { //Выполняется перед каждым тестом, инициализирует экземпляр `MainViewModel`.
         viewModel = MainViewModel()
     }
 
 
+
     @Test
+    //Тестирует метод `getResult()` класса `MainViewModel`.
+    //Генерирует случайные значения для среднего и дисперсии.
+    //Сгенерирует 1 500 000 значений с использованием метода `getResult()`.
+    //Проверяет, что сгенерированные значения больше 0.
+    ///Проверяет статистические свойства сгенерированных значений (среднее, дисперсию, асимметрию и эксцесс).
+//`testTextView()`:** Тестирует текст в представлении.
+    //Генерирует случайные значения для среднего и дисперсии.
+    //Вызывает метод `getResult()`, проверяя, что возвращаемое значение не равно `null` и больше 0.
+    // Проверяет, что поле `randomNumber` не равно `null` и содержит значение, равное результату.
+
     fun formulaCalculation() {
         val mean = random.nextDouble()
         val variance = random.nextDouble()
@@ -38,6 +50,25 @@ class MainViewModelUnitTest {
                 true, res != null && res > 0)
             generatedNums.add(res!!)
         }
+//Используется для проверки статистических свойств сгенерированных значений.
+// Сравнивает среднее, дисперсию, асимметрию и эксцесс сгенерированных значений с ожидаемыми значениями.
+//Метод checkLog():
+
+//Входные параметры:
+    // nums: Список сгенерированных значений.
+    // m: Ожидаемое среднее.
+    // v: Ожидаемая дисперсия.
+    //sk: Ожидаемая асимметрия.
+    // kur: Ожидаемый эксцесс.
+//Действия:
+    // Конвертирует список nums в массив double.
+    // Вычисляет среднее gm с помощью StatUtils.mean().
+    // Вычисляет дисперсию gv с помощью StatUtils.variance().
+    //Вычисляет асимметрию skewness с помощью DescriptiveStatistics.skewness().
+    // Вычисляет эксцесс kurtosis с помощью DescriptiveStatistics.kurtosis().
+    // Печатает статистические свойства сгенерированных значений.
+    // Проверяет, что среднее, дисперсия, асимметрия и эксцесс сгенерированных значений близки к ожидаемым значениям с использованием TestCase.assertEquals().
+
 
         checkLog(
             generatedNums,
@@ -67,6 +98,14 @@ class MainViewModelUnitTest {
     }
 
     @Test
+    //Тест testTextView():
+
+// Действия:
+    ///Для каждого из 1 500 000 итераций:
+        // Генерирует случайные значения для mean и variance.
+        // Вызывает метод getResult() для получения результата.
+        // Проверяет, что результат не равен null и больше 0.
+        // Проверяет, что поле randomNumber не равно null и содержит значение, равное результату.
     fun testTextView() {
         for (i in 0..1500000) {
             viewModel.mean = random.nextDouble()
